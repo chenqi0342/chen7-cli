@@ -1,0 +1,60 @@
+#! /usr/bin/env node
+
+// console.log('chen7-cli')
+
+//1.配置可执行命令 commander
+//安装commander
+const program = require('commander');
+const chalk = require('chalk') //粉笔
+// import chalk from 'chalk'
+//核心功能 1.创建项目 2.更改配置文件 3.ui界面 @vue/ui
+// .command命令行的意思
+//万一重名？ 强制创建的模式
+//格式化命令
+// const cleanArgs = (cmd) => { //{force: true}
+//     const args = {};
+//     cmd.options.forEach(o=> {
+//         const key = o.long.slice(2)
+//         if (cmd[key]) args[key] =cmd[key]
+//     });
+//     return args;
+// } 
+
+//创建项目
+program
+    .command('create <app-name>')
+    .description('create a new project')
+    .option('-f,--force', 'overwrite target directory if it exists')
+    .action((name, cmd) => {
+        //调用create模块去创建
+        require('../lib/create')(name,cmd)
+        console.log(name, cmd)
+    }) //提取cmd中的属性
+//配置目录
+program
+    .command('config [value]') //command用户输入
+    .description('inspect and modify the config')//描述
+    .option('-g, --get <path>', 'get value from option')//选项 取数据
+    .option('-s, --set <path> <value>') //选项 设置
+    .option('-d, --delete <path>', 'delete option from config') //选项 删除
+    .action((value, cmd) => { console.log(value, cmd) }) //提取cmd中的属性
+//ui界面
+program
+    .command('ui')
+    .description('start and open chen7-cli ui')
+    .option('-p,--port <port>', 'Port used for the UI Server')
+    .action((cmd)=>{console.log(cmd)})
+//查询版本    
+program
+    .version(`chen7-cli ${require('../package.json').version}`)
+    .usage(`<command>[option]`)
+program.on('--help', function () {
+    console.log()
+    console.log(`Run ${chalk.red(`chen7-cli <command> --help`)}show details`)
+    console.log()
+})    
+//解析用户执行命令传入的参数
+program.parse(process.argv)
+//2.我们要实现 脚手架 先做一个命令行交互的功能 inquirer
+//3.将模版下载下来 download-git-rpeo
+//4.根据用户的选择动态生产内容metalsmith

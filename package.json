@@ -1,0 +1,33 @@
+{
+  "name": "chen7-cli",
+  "version": "1.0.0",
+  "description": "个人的cli工具",
+  "main": "index.js",
+  "bin": {
+    "chen7-cli": "./bin/chen",
+    "chen": "./bin/chen"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenqi0342/chen7-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenqi0342/chen7-cli/issues"
+  },
+  "homepage": "https://github.com/chenqi0342/chen7-cli#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chalk": "4.1.2",
+    "commander": "^9.2.0",
+    "download-git-repo": "^3.0.2",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4",
+    "ora": "5.1.0"
+  }
+}
